@@ -4,7 +4,7 @@ const routes = require('./routes');
 const cors = require('cors');
 const path = require('path');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3006;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -21,14 +21,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(routes);
 
-app.use((err, req, res) => {
-  console.error(err.stack);
-  req.status(500).json({
-    message: isProduction ? "An error was found while fetching the thought" : err.message })
-});
 
 db.once('open', () => {
   app.listen(PORT, () => {

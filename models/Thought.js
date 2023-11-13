@@ -16,7 +16,7 @@ const thoughtSchema = new Schema(
       get: (timestamps) => moment(timestamps).format('MMM Do, YYYY [at] hh:mm a')
     },
     username: {
-      type: Number,
+      type: String,
       required: true,
     },
     rections: [reactionSchema] 
@@ -35,4 +35,4 @@ thoughtSchema.virtual('reactionCount').get(function () {
 
 const Thought = model('Thought', thoughtSchema);
 
-module.exports = Course;
+module.exports = Thought;
